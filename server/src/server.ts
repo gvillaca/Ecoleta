@@ -1,33 +1,14 @@
 import express from "express";
+import cors from 'cors';
+import routes from "./routes";
+import path from 'path';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
+app.use(routes);
 
-const users = [
-    'Gustavo', 
-    'Talita', 
-    'Felipe', 
-    'Diego',
-    'Fernando',
-    'Ricardo',
-    'Jefferson'
-]
-
-app.post('/users', (req, res) => {
-    const data = req.body;
-    return res.json(data);
-});
-
-app.get('/users', (req, res) => {
-    const search = String(req.query.search);
-    const filtrados = search ? users.filter(u => u.includes(search)) : users;
-    return res.json(filtrados);
-});
-
-app.get('/users/:id', (req, res) => {
-    const id = Number(req.params.id);
-    return res.json(users[id]);
-});
+app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
 app.listen(3333);
