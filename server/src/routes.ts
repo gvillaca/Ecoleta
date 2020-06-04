@@ -1,7 +1,7 @@
 import express from "express";
 
 import PointsController from "./controllers/PointsController";
-import ItensController from "./controllers/itensController";
+import ItensController from "./controllers/ItensController";
 
 //index, show, create, update, delete
 
